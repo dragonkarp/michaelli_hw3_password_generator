@@ -9,13 +9,13 @@ function writePassword() {
     }
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
-} 
+}
 
 // Call askLength and askRules and store return values.
 // Check to see if user gave up. 
 // while loop: mapping to rules selected by user is done here.
 // 
-// The function is dynamic. Tried to make it easier for other programmers to 
+// The function somewhat dynamic, but not entirely. Tried to make it easier for other programmers to add rules.
 function generatePassword () {
     var chosenLength = askLength();
     if (chosenLength = false) { 
@@ -28,25 +28,24 @@ function generatePassword () {
     var lowerCaseArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
     var numberArray = [1,2,3,4,5,6,7,8,9,0];
     var specialSymbolArray = ["!","@","#","$","%","^","&","*"];
-    //var ruleSetMap = {zerothRule:upperCaseArray, firstRule:lowerCaseArray, secondRule:numberArray, thirdRule:specialSymbolArray};
 
     while (password.length < chosenLength) {
         var randomlyPickedRule = Math.floor(Math.random() * userRuleSet.length); 
-        var randomlyPickedCharacter;
-
+        var randomlyPickedCharacterInArray; 
         var theRule = userRuleSet[randomlyPickedRule];
+
         if (theRule === 'uppercases') {
-            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
-            password.push(randomlyPickedCharacter);
+            randomlyPickedCharacterInArray = Math.floor(Math.random() * upperCaseArray.length);
+            password.push(upperCaseArray[randomlyPickedCharacterInArray]);
         } else if (theRule === 'lowercases') {
-            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
-            password.push(randomlyPickedCharacter);
+            randomlyPickedCharacterInArray = Math.floor(Math.random() * lowerCaseArray.length);
+            password.push(lowerCaseArray[randomlyPickedCharacterInArray]);
         } else if (theRule === 'numbers') {
-            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
-            password.push(randomlyPickedCharacter);
+            randomlyPickedCharacterInArray = Math.floor(Math.random() * numberArray.length);
+            password.push(numberArray[randomlyPickedCharacterInArray]);
         } else if (theRule === 'specialCharacters') {
-            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
-            password.push(randomlyPickedCharacter);
+            randomlyPickedCharacterInArray = Math.floor(Math.random() * specialSymbolArray.length);
+            password.push(specialSymbolArray[randomlyPickedCharacterInArray]);
         }
     }
  return password;
@@ -69,9 +68,9 @@ function askLength () {
             alert("Okay. Nevermind.");
             return false; 
         }
-    } //else if ((x >= 8) && (x <= 128)) { // (1)
-        return lengthInt;
     } 
+    //else if ((x >= 8) && (x <= 128)) { // (1)
+    //return lengthInt;
       
 }
 
@@ -82,12 +81,13 @@ function askLength () {
 // Return array of strings of rules user chose. Other rules not in array.
 function askRules () {
     var usersRuleChoice = false;
+    finalRuleSet = [];
     var userRules = {'upperCaseRule': false,
                     'lowerCaseRule': false,
                     'numberRule': false,
                     'specialCharacterRule': false};
 
-    alert("Choose your rules.");
+    alert("Choose At least 1 rule.");
 
     usersRuleChoice = confirm("Do you want to include uppercases?");
     if (!(userRules.upperCaseRule) && (usersRuleChoice)) {
@@ -102,21 +102,20 @@ function askRules () {
     usersRuleChoice = confirm("Do you want to include numbers?");
     if (!(userRules.numberRule) && (usersRuleChoice)) {
         usersRuleChoice = false;
-        usersRule.numberRule = true;
+        usersRuleChoice.numberRule = true;
     }
     usersRuleChoice = confirm("Do you want to include special characters?");
     if (!(userRules.specialCharacterRule) && (usersRuleChoice)) {
         usersRuleChoice = false;
-        userRules.specialCharacterRule = true;
+        usersRuleChoice.specialCharacterRule = true;
     }
 
-    finalRuleSet = [];
     if (userRules.upperCaseRule) {
         finalRuleSet.push('uppercases');
     }
     if (userRules.lowerCaseRule) {
         finalRuleSet.push('lowercases');
-    }
+    } 
     if (userRules.numberRule) {
         finalRuleSet.push('numbers');
     }
@@ -124,55 +123,16 @@ function askRules () {
         finalRuleSet.push('specialCharacters');
     }
     
-return finalRuleSet;
+    if (finalRuleSet.length != 0) {
+        return finalRuleSet;
+    } else if (finalRuleSet.length === 0) {
+        var tryAgainOption = confirm("You didn't pick any rules. You need at least 1. Try again?")
+        if (tryAgainOption === true) {
+            askRules();
+        }
+        
+    }
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-/* 
- if (randomlyPickedRule = 0) {
-            randomlyPickedCharacter = Math.floor(Math.random() * ruleSetMap[zerothRule].length);
-            password.push(randomlyPickedCharacter);
-        } else if (randomlyPickedRule = 1) {
-            randomlyPickedCharacter = Math.floor(Math.random() * ruleSetMap[firstRule].length);
-            password.push(randomlyPickedCharacter);
-        } else if (randomlyPickedRule = 2) {
-            randomlyPickedCharacter = Math.floor(Math.random() * ruleSetMap[secondRule].length);
-            password.push(randomlyPickedCharacter);
-        } else if (randomlyPickedRule = 3) {
-            randomlyPickedCharacter = Math.floor(Math.random() * ruleSetMap[thirdRule].length);
-            password.push(randomlyPickedCharacter);
-        }   
-
-
-
-        function generatePassword () {
-    var chosenLength = askLength();
-    if (chosenLength = false) { 
-        return chosenLength;
-    }
-
-    var userRuleSet = askRules(); //array of rules.
-    var password = '';
-    var zerothRule = userRuleSet[0];  //"uppercases" (2)
-    var firstRule = userRuleSet[1]; //"lowercases"
-    var secondRule = userRuleSet[2]; //"numbers"
-    var thirdRule = userRuleSet[3]; //"specialCharacters"
-    var upperCaseArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-    var lowerCaseArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    var numberArray = [1,2,3,4,5,6,7,8,9,0];
-    var specialSymbolArray = ["!","@","#","$","%","^","&","*"];
-    //var ruleSetMap = {zerothRule:upperCaseArray, firstRule:lowerCaseArray, secondRule:numberArray, thirdRule:specialSymbolArray};
-
-    while (password.length < chosenLength) {
-        var randomlyPickedRule = Math.floor(Math.random() * userRuleSet.length); 
-        var randomlyPickedCharacter;
-
-       
-
-    }
- return password;
-}
-*/
