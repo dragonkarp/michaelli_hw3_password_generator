@@ -13,10 +13,9 @@ function writePassword() {
 
 // Call askLength and askRules and store return values.
 // Check to see if user gave up. 
-// while loop: if not long enough, keep pushing to string
-//  generates a new int on loop back
-//  map int to rule in ruleSetMap
+// while loop: mapping to rules selected by user is done here.
 // 
+// The function is dynamic. Tried to make it easier for other programmers to 
 function generatePassword () {
     var chosenLength = askLength();
     if (chosenLength = false) { 
@@ -34,14 +33,21 @@ function generatePassword () {
     while (password.length < chosenLength) {
         var randomlyPickedRule = Math.floor(Math.random() * userRuleSet.length); 
         var randomlyPickedCharacter;
-        for (var i = 0; i < userRuleSet.length: i++)
-            if (randomlyPickedRule === i) {
-                
-            } else if (randomlyPickedRule = -1) {
-                
-            }
+
+        var theRule = userRuleSet[randomlyPickedRule];
+        if (theRule === 'uppercases') {
+            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
+            password.push(randomlyPickedCharacter);
+        } else if (theRule === 'lowercases') {
+            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
+            password.push(randomlyPickedCharacter);
+        } else if (theRule === 'numbers') {
+            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
+            password.push(randomlyPickedCharacter);
+        } else if (theRule === 'specialCharacters') {
+            var randomlyPickedCharacter = Math.floor(Math.random() * theRule.length);
+            password.push(randomlyPickedCharacter);
         }
-        
     }
  return password;
 }
