@@ -18,11 +18,15 @@ function writePassword() {
 // The function somewhat dynamic, but not entirely. Tried to make it easier for other programmers to add rules.
 function generatePassword () {
     var chosenLength = askLength();
-    if (chosenLength = false) { 
-        return chosenLength;
+    var userRuleSet = askRules(); //array of rules.
+
+    // askLength and askRules return false if user wants to end program. Return value is used in the same way in the parent function, writePassword().
+    if (chosenLength === false) { 
+        return false;
+    } else if (userRuleSet === false) {
+        return false;
     }
 
-    var userRuleSet = askRules(); //array of rules.
     var password = '';
     var upperCaseArray = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var lowerCaseArray = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -74,11 +78,10 @@ function askLength () {
       
 }
 
-// Made a counter of how many prompts the user agreed to.
-// Made object for storing the t/f values of each rule based on user inputs to confirm functions.
-// Confirm with user.
-// Reset usersRuleChoice to reuse (just to be safe we reset the bool value).
-// Return array of strings of rules user chose. Other rules not in array.
+// Takes user input and populates finalRuleSet.
+// Returns array of rules user selects at least 1.
+// Function calls itself if user didn't select a rule AND chooses to continue.  
+// Function returns false if user doesn't want to try again. 
 function askRules () {
     var usersRuleChoice = false;
     finalRuleSet = [];
@@ -126,11 +129,12 @@ function askRules () {
     if (finalRuleSet.length != 0) {
         return finalRuleSet;
     } else if (finalRuleSet.length === 0) {
-        var tryAgainOption = confirm("You didn't pick any rules. You need at least 1. Try again?")
+        var tryAgainOption = confirm("You didn't pick any rules. You need at least 1. Try again?");
         if (tryAgainOption === true) {
             askRules();
+        } else if (tryAgainOption === false) {
+            return false;
         }
-        
     }
 }
 
