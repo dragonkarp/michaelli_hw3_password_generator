@@ -61,21 +61,21 @@ function generatePassword () {
 // If input is valid, return length.
 function askLength () {
     var desiredLength = prompt("Enter the password length you want from 8-128 characters.");
-    var lengthInt = parseInt(desiredLength, 10); // Parse first continuous number from string. Return with type int.
-
+    var lengthInt = parseInt(desiredLength, 10); // parseInt returns NaN if string doesn't include at least 1 int.
     if (!(Number.isInteger(desiredLength))) {
         var confirmTryAgain = confirm("Sorry, that doesn't work. Would you like to keep trying?");
-
         if (confirmTryAgain) {
             askLength();
         } else if (!confirmTryAgain) {
             alert("Okay. Nevermind.");
-            return false; 
+            return false;
         }
     } 
-    //else if ((x >= 8) && (x <= 128)) { // (1)
-    //return lengthInt;
-      
+
+  /*   if (lengthInt >= 0) {
+        console.log("past return false ");
+    }
+       */
 }
 
 // Takes user input and populates finalRuleSet.

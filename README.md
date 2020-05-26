@@ -1,15 +1,19 @@
-++++student notes++++
-what comment is about, (number code), files: student comments/concerns
+++++ student notes ++++
+:::::: format ::::::
+what comment is about, (number code), files code is in: student comments/concerns
+UPDATES:
+::::::::::::::::::::
 
 type error, (1), script.js: I think it has something to do with how I am using types. I want to get a string, convert it to an int, compare the int to int literals to know if the number is in range. I checked desiredLength's type after using parseInt() and successfully got an int returned. Then I tried to compare them to ints(line 80). I also tried basic troubleshooting included restarting VSC, the computer. I have no idea how to fix this if the logic is correct.
 
 need advice, (2), script.js: The commented strings are what the literal strings are. The idea was to map the a type of character(upper,lower,etc) to a number. The purpose of this is to map a randomly generated number from 0-3 and map that number to the rule's appropriate array. Perhaps there is a better way of doing this? The mapping can get confusing.
 
-explanation and need advice, (3), script.js: If the user changes their mind and clicks cancel when line 64 executes, a false is returned, checked by generatePassword, then checked by writePassword. writePassword will return 0, ending the program, if the check finds that the user chose to not try again. It's the cleanest way I can think of doing it.
+explanation and need advice, (3), script.js: If the user changes their mind and clicks cancel when line 64 executes, a false bool is returned, checked by generatePassword, then checked by writePassword. writePassword will return 0, ending the program, if the check finds that the user chose to not try again. It doesn't work. I thought it would because I thought functions stop executing when a return statement is executed.
+UPDATE: I tried using break instead in the if statement. It only exits the block. It doesn't give me anything to end the program with. 
 
 
 
-+++++++++++++++++++++
+++++++++++++++++++++++
 
 
 # 03 JavaScript: Password Generator
