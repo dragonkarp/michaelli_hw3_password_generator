@@ -13,7 +13,7 @@ function writePassword() {
 
 // Call askLength and askRules and store return values.
 // Check to see if user gave up. 
-// while loop: mapping to rules selected by user is done here.
+// while loop: mapping to rules selected by user is done here. (2)
 // 
 // The function somewhat dynamic, but not entirely. Tried to make it easier for other programmers to add rules.
 function generatePassword () {
@@ -70,12 +70,13 @@ function askLength () {
             alert("Okay. Nevermind.");
             return false;
         }
-    } 
+    } // else if ((lengthInt <= 8 ) && (lengthInt >= 128)){}; don't know why this doesn't work, but line 75 does
 
-  /*   if (lengthInt >= 0) {
-        console.log("past return false ");
-    }
-       */
+    /* if (lengthInt >= 8) { (1)
+        if (lengthInt <= 128){
+            console.log("WHY DOES THIS WORK??")
+        }
+    } */
 }
 
 // Takes user input and populates finalRuleSet.
@@ -130,6 +131,9 @@ function askRules () {
         return finalRuleSet;
     } else if (finalRuleSet.length === 0) {
         var tryAgainOption = confirm("You didn't pick any rules. You need at least 1. Try again?");
+        for (var i = 0; i < finalRuleSet.length; i++) {
+            console.log(finalRuleSet[i]);
+        }
         if (tryAgainOption === true) {
             askRules();
         } else if (tryAgainOption === false) {
