@@ -1,9 +1,7 @@
 ++++ student notes ++++
-
-:::::: format ::::::
-what comment is about, (number code), files code is in: student comments/concerns
+:::::::::::::::::::::
+comment purpose, (#), files #(search in file using "(^#)") is in: student comments/concerns
 UPDATES:
-::::::::::::::::::::
 
 type error, (1), script.js: I think it has something to do with how I am using types. I want to get a string, convert it to an int, compare the int to int literals to know if the number is in range. I checked desiredLength's type after using parseInt() and successfully got an int returned. Then I tried to compare them to ints. I also tried basic troubleshooting included restarting VSC, the computer. I have no idea how to fix this if the logic is correct.
 
@@ -11,6 +9,7 @@ need advice, (2), script.js: The commented strings are what the literal strings 
 
 explanation and need advice, (3), script.js: If the user changes their mind and clicks cancel when line 64 executes, a false bool is returned, checked by generatePassword, then checked by writePassword. writePassword will return 0, ending the program, if the check finds that the user chose to not try again. It doesn't work. I thought it would because I thought functions stop executing when a return statement is executed.
 UPDATE: I tried using break instead in the if statement. It only exits the block. It doesn't give me anything to end the program with.
+:::::::::::::::::::::
 
 @@@@@ intended functionality @@@@@@@@
 The program prompts the user to enter a length from 8-128. If the user enters improper input, they are given a prompt to either keep trying, or give up. If they give up, the program ends. If not, they are prompted again for length. When length is validated, the user is prompted to pick a rule set. If the user picks 0, they are asked if they want to give up, or keep trying. The program ends if they give up. If not, the user is presented with prompts to select a rule set again. If the rule set is not empty, the password is generated.
@@ -21,9 +20,7 @@ The program prompts the user to enter a length from 8-128. If the user enters im
 # Figure out how to end programs.
 # test mapping in generatePassword
 # figure out why 73 doesn't work
-
-
-
+@@@@@@@@@@@@@@@@@@@@
 ++++++++++++++++++++++
 
 
@@ -76,3 +73,4 @@ You are required to submit the following for review:
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
 # hw3_Michael_Li_Random_password_generator
+# Michael_Li_HW3_redo_RandPasswordGenerator
